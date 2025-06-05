@@ -367,7 +367,7 @@ public class CustomerController {
     @PostMapping("/changePassword")
     // 修改密码
     public Map changePassword(@RequestBody UserBodyChangePassword userBodyChangePassword) {
-        System.out.println("post success!" + userBodyChangePassword);
+        // System.out.println("post success!" + userBodyChangePassword);
 
         String message = "";
         Customer customer = new Customer();
