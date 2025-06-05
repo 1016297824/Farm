@@ -8,7 +8,7 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 // 用户修改密码
-public class UserBody1 {
+public class UserBodyChangePassword {
 
     private String username;
     private String password;

@@ -2,7 +2,7 @@ package com.graduationproject.graduationproject.controller;
 
 import com.graduationproject.graduationproject.entity.*;
 import com.graduationproject.graduationproject.entity.body.PageBody1;
-import com.graduationproject.graduationproject.entity.body.UserBody1;
+import com.graduationproject.graduationproject.entity.body.UserBodyChangePassword;
 import com.graduationproject.graduationproject.repository.FertilizerRepository;
 import com.graduationproject.graduationproject.repository.ProductRepository;
 import com.graduationproject.graduationproject.service.*;
@@ -172,17 +172,17 @@ public class FarmStaffController {
 
     @PostMapping("changePassword")
     // 修改密码
-    public Map changePassword(@RequestBody UserBody1 userBody1) {
+    public Map changePassword(@RequestBody UserBodyChangePassword userBodyChangePassword) {
         //System.out.println("post success!" + userBody1.getUsername());
 
         String message = "";
         Staff staff = new Staff();
 
-        staff = staffService.findByUsername(userBody1.getUsername());
-        if (!passwordEncoder.matches(userBody1.getPassword(), staff.getPassword())) {
+        staff = staffService.findByUsername(userBodyChangePassword.getUsername());
+        if (!passwordEncoder.matches(userBodyChangePassword.getPassword(), staff.getPassword())) {
             throw new ResponseStatusException(HttpStatus.UNAUTHORIZED, "旧密码错误！");
         } else {
-            staff.setPassword(passwordEncoder.encode(userBody1.getNewPassword()));
+            staff.setPassword(passwordEncoder.encode(userBodyChangePassword.getNewPassword()));
             staffService.updateStaff(staff);
             message = "修改成功！";
         }

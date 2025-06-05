@@ -5,7 +5,7 @@ import com.graduationproject.graduationproject.component.EncryptorComponent;
 import com.graduationproject.graduationproject.entity.*;
 import com.graduationproject.graduationproject.entity.body.PageBody;
 import com.graduationproject.graduationproject.entity.body.PageBody1;
-import com.graduationproject.graduationproject.entity.body.UserBody1;
+import com.graduationproject.graduationproject.entity.body.UserBodyChangePassword;
 import com.graduationproject.graduationproject.service.*;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -366,17 +366,17 @@ public class CustomerController {
 
     @PostMapping("/changePassword")
     // 修改密码
-    public Map changePassword(@RequestBody UserBody1 userBody1) {
-        //System.out.println("post success!" + userBody1.getUsername());
+    public Map changePassword(@RequestBody UserBodyChangePassword userBodyChangePassword) {
+        System.out.println("post success!" + userBodyChangePassword);
 
         String message = "";
         Customer customer = new Customer();
 
-        customer = customerService.findByUsername(userBody1.getUsername());
-        if (!passwordEncoder.matches(userBody1.getPassword(), customer.getPassword())) {
+        customer = customerService.findByUsername(userBodyChangePassword.getUsername());
+        if (!passwordEncoder.matches(userBodyChangePassword.getPassword(), customer.getPassword())) {
             throw new ResponseStatusException(HttpStatus.UNAUTHORIZED, "旧密码错误！");
         } else {
-            customer.setPassword(passwordEncoder.encode(userBody1.getNewPassword()));
+            customer.setPassword(passwordEncoder.encode(userBodyChangePassword.getNewPassword()));
             customerService.updateCustomer(customer);
             message = "修改成功！";
         }
