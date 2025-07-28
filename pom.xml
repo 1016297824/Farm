@@ -8,10 +8,10 @@
         <version>2.2.5.RELEASE</version>
         <relativePath/>
     </parent>
-    <groupId>com.graduationproject</groupId>
-    <artifactId>graduationproject</artifactId>
+    <groupId>com.Farm</groupId>
+    <artifactId>Farm</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>graduationproject</name>
+    <name>Farm</name>
     <description>Demo project for Spring Boot</description>
 
     <properties>
